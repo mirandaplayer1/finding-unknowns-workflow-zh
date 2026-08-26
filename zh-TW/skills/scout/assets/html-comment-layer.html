@@ -1,0 +1,148 @@
+<!--
+留言層：可重複使用的片段。任何給人看的 HTML 產出都要內嵌這一份。
+
+怎麼用（三步）：
+1. 把 <style> 區塊貼進頁面的 </style> 之前。
+2. 把 <body 尾端> 區塊貼進頁面主容器的最後、</body> 之前。
+3. 把 <script> 區塊貼進 </body> 之前。
+
+它做什麼：
+- 掃描頁面上的 .card、.step、每個 <h2> 段落，各掛一個可收合留言框。
+- 頁尾固定列顯示留言數，一鍵複製成結構化文字貼回對話。
+- 留言存在 localStorage，重新整理不會消失。
+
+要改掛載對象就改 script 裡那三個 querySelectorAll。
+頁面沒有 .card / .step 也沒關係，h2 段落層一定會有。
+-->
+
+<!-- ①  貼進 </style> 之前  -->
+<style>
+/* ── 留言層 ── */
+  .cmt{margin:6px 0 18px}
+  .cmt-btn{appearance:none;border:1px dashed var(--line);background:#fff;color:var(--muted);
+    font:inherit;font-size:12.5px;padding:3px 10px;border-radius:999px;cursor:pointer;line-height:1.7}
+  .cmt-btn:hover{border-color:var(--purple);color:var(--purple)}
+  .cmt-btn.has{border-style:solid;border-color:var(--amber);color:#8A5A00;background:#FFF8E8}
+  .cmt textarea{display:none;width:100%;box-sizing:border-box;margin-top:8px;min-height:76px;
+    font:inherit;font-size:14px;line-height:1.7;padding:10px 12px;border:1px solid var(--line);
+    border-radius:10px;background:#fff;color:var(--ink);resize:vertical}
+  .cmt textarea:focus{outline:none;border-color:var(--purple)}
+  .cmt.open textarea{display:block}
+  .cmt-hint{font-size:12px;color:var(--muted);margin-top:5px}
+  .cbar{position:sticky;bottom:0;z-index:20;margin:36px -4px 0;padding:12px 16px;
+    background:var(--navy);color:var(--ice);border-radius:12px;display:flex;gap:12px;
+    align-items:center;flex-wrap:wrap;box-shadow:0 6px 24px rgba(30,39,97,.28)}
+  .cbar .n{font-size:14px;flex:1;min-width:180px}
+  .cbar .n b{color:#fff}
+  .cbar button{appearance:none;border:0;font:inherit;font-size:14px;font-weight:700;
+    padding:9px 16px;border-radius:9px;cursor:pointer}
+  .cbar .go{background:#fff;color:var(--navy)}
+  .cbar .go:hover{background:var(--ice)}
+  .cbar .clr{background:transparent;color:var(--ice);border:1px solid rgba(202,220,252,.45);font-weight:400}
+  .cbar .clr:hover{border-color:#fff;color:#fff}
+  @media print{.cmt-btn,.cbar{display:none}}
+</style>
+
+<!-- ②  貼進主容器最後、</body> 之前  -->
+<div class="cbar">
+  <div class="n">留言 <b id="cCount">0</b> 則 —— 寫完按右邊按鈕，把意見貼回對話給 agent。</div>
+  <button class="clr" id="cClear">清空</button>
+  <button class="go" id="cCopy">複製全部意見</button>
+</div>
+
+<!-- ③  貼進 </body> 之前  -->
+<script>
+/* ── 留言層：每段可留言 → 一鍵複製回貼 ── */
+(function(){
+  var KEY = 'cmt:' + (location.pathname.split('/').pop() || 'page');
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){}
+
+  var boxes = [];
+  function label(el){
+    var t = el.querySelector('.step-title') || el.querySelector('h3') || el;
+    return (t.textContent || '').trim().replace(/\s+/g,' ').slice(0,60);
+  }
+  function build(name){
+    var wrap = document.createElement('div');
+    wrap.className = 'cmt';
+    var btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'cmt-btn'; btn.textContent = '💬 留言';
+    var ta = document.createElement('textarea');
+    ta.placeholder = '對「' + name + '」的意見、疑問、想改的地方⋯⋯';
+    ta.value = saved[name] || '';
+    wrap.appendChild(btn); wrap.appendChild(ta);
+    btn.addEventListener('click', function(){
+      wrap.classList.toggle('open');
+      if (wrap.classList.contains('open')) ta.focus();
+    });
+    ta.addEventListener('input', sync);
+    if (ta.value) wrap.classList.add('open');
+    boxes.push({name:name, ta:ta, btn:btn, wrap:wrap});
+    return wrap;
+  }
+
+  /* 卡片在 CSS grid 裡，留言框要放進卡片內部才不會撐破版面 */
+  document.querySelectorAll('.card').forEach(function(c){
+    c.appendChild(build('卡片：' + label(c)));
+  });
+  document.querySelectorAll('.step').forEach(function(s){
+    s.parentNode.insertBefore(build('步驟：' + label(s)), s.nextSibling);
+  });
+  /* 段落層留言放在該段結尾（下一個 h2 之前） */
+  document.querySelectorAll('h2').forEach(function(h){
+    var name = '整段：' + h.textContent.trim();
+    var node = h, last = h;
+    while ((node = node.nextElementSibling) && node.tagName !== 'H2') last = node;
+    last.parentNode.insertBefore(build(name), last.nextSibling);
+  });
+
+  var countEl = document.getElementById('cCount');
+  function filled(){ return boxes.filter(function(b){ return b.ta.value.trim(); }); }
+  function sync(){
+    var f = filled();
+    countEl.textContent = f.length;
+    boxes.forEach(function(b){ b.btn.classList.toggle('has', !!b.ta.value.trim()); });
+    var out = {};
+    f.forEach(function(b){ out[b.name] = b.ta.value; });
+    try { localStorage.setItem(KEY, JSON.stringify(out)); } catch(e){}
+  }
+
+  function payload(){
+    var f = filled();
+    if (!f.length) return '';
+    var lines = ['## 《' + document.title + '》意見回饋', ''];
+    f.forEach(function(b){
+      lines.push('### ' + b.name);
+      lines.push(b.ta.value.trim());
+      lines.push('');
+    });
+    return lines.join('\n').trim();
+  }
+
+  var copyBtn = document.getElementById('cCopy');
+  copyBtn.addEventListener('click', function(){
+    var text = payload();
+    if (!text) { copyBtn.textContent = '還沒有留言'; setTimeout(function(){ copyBtn.textContent = '複製全部意見'; }, 1400); return; }
+    function done(){ copyBtn.textContent = '✓ 已複製，貼回對話'; setTimeout(function(){ copyBtn.textContent = '複製全部意見'; }, 2000); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+    function fallback(){
+      var t = document.createElement('textarea');
+      t.value = text; t.style.position='fixed'; t.style.opacity='0';
+      document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); done(); } catch(e){ prompt('複製這段貼回對話：', text); }
+      document.body.removeChild(t);
+    }
+  });
+
+  document.getElementById('cClear').addEventListener('click', function(){
+    if (!filled().length) return;
+    boxes.forEach(function(b){ b.ta.value = ''; b.wrap.classList.remove('open'); });
+    sync();
+  });
+
+  sync();
+})();
+</script>

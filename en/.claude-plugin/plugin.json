@@ -1,0 +1,8 @@
+{
+  "name": "finding-unknowns-en",
+  "description": "A \"find the unknowns before you build\" workflow: kickoff sets up the skeleton and drafts the spec, scout runs competitor research, interview clarifies known unknowns, blindspot scans for unknown unknowns, quiz tests understanding before delivery, pitch packages the explainer, reflect runs the retrospective and promotes lessons.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Miranda Wu"
+  }
+}

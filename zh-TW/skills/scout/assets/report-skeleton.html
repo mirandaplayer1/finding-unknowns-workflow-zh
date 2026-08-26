@@ -1,0 +1,304 @@
+<!doctype html>
+<!--
+  Scout 報告骨架。
+  這份檔案只定樣式與區塊型別，章節結構由題目決定——不要照抄上一份報告的節數。
+  四種區塊：
+    1. 框架區   .mm（心智模型圖） + .journey（旅程時刻表）
+    2. 案例卡   .shots > .shot（截圖 + 圖說），前面配 .lens（三行標註）
+    3. 方向卡   .opt（.opt.rec 是建議的那個）
+    4. 邊界清單 .edge
+  另有 .callout（.good / .warn）放結論與警告。
+  截圖放在與本檔同名的 -assets/ 資料夾，相對路徑引用。
+-->
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>【題目】競品分析</title>
+<style>
+  :root {
+    --bg: #fbfaf8; --surface: #ffffff; --ink: #1a1a18; --ink-soft: #55534e;
+    --ink-faint: #86837c; --line: #e6e3dd; --accent: #b4541e; --accent-soft: #fdf1e9;
+    --good: #2f6f4e; --good-soft: #eaf4ee; --warn: #8a6d1f; --warn-soft: #fbf3de;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", sans-serif; }
+  /* 版面加寬是為了截圖夠大；文字區塊另外收窄 */
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 56px 24px 120px; }
+
+  header.top { border-bottom: 2px solid var(--ink); padding-bottom: 28px; margin-bottom: 44px; }
+  .eyebrow { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin: 0 0 10px; }
+  h1 { font-size: 34px; line-height: 1.25; margin: 0 0 14px; letter-spacing: -.01em; }
+  .lede { font-size: 17px; color: var(--ink-soft); margin: 0; max-width: 62ch; }
+  .meta { margin-top: 20px; font-size: 14px; color: var(--ink-faint); }
+
+  h2 { font-size: 24px; margin: 64px 0 8px; scroll-margin-top: 20px; }
+  h2 .num { color: var(--accent); margin-right: 10px; font-variant-numeric: tabular-nums; }
+  .section-q { color: var(--ink-soft); margin: 0 0 28px; max-width: 64ch; }
+  h3 { font-size: 17px; margin: 36px 0 10px; }
+  p { margin: 0 0 14px; max-width: 68ch; }
+  ul, ol { max-width: 68ch; padding-left: 22px; margin: 0 0 16px; }
+  li { margin-bottom: 8px; }
+
+  nav.toc, .tablewrap, .opt, .edge, .callout, .lens, .mm { max-width: 900px; }
+  nav.toc { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 24px; }
+  nav.toc h4 { margin: 0 0 12px; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); }
+  nav.toc ol { columns: 2; column-gap: 32px; margin: 0; padding-left: 20px; }
+  nav.toc li { margin-bottom: 6px; break-inside: avoid; }
+  nav.toc a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+  nav.toc a:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ---- 1. 框架區 ---- */
+  .mm { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; margin: 24px 0; }
+  .mm svg { width: 100%; height: auto; display: block; }
+
+  table { width: 100%; border-collapse: collapse; margin: 20px 0 24px; font-size: 15px; }
+  th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-faint); font-weight: 600; border-bottom: 2px solid var(--ink); }
+  td:first-child { font-weight: 600; white-space: nowrap; }
+  .tablewrap { overflow-x: auto; }
+  .journey td:first-child { white-space: normal; }
+
+  /* ---- 2. 案例卡 ---- */
+  .lens { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--ink-faint);
+    border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 18px; margin: 0 0 4px; font-size: 14.5px; color: var(--ink-soft); }
+  .lens b { color: var(--ink); font-weight: 650; }
+  .lens span { display: block; margin-bottom: 4px; }
+  .lens span:last-child { margin-bottom: 0; }
+
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 24px; margin: 24px 0 8px; }
+  .shots.mobile { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+  .shot { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+  .shot a.img { display: block; position: relative; }
+  .shot a.img::after { content: "開啟原始來源"; position: absolute; inset: auto 0 0 0; background: rgba(0,0,0,.72);
+    color: #fff; font-size: 12px; padding: 6px 10px; opacity: 0; transition: opacity .15s; }
+  .shot a.img:hover::after { opacity: 1; }
+  .shot img { width: 100%; display: block; background: #f2f0ec; }
+  .shot figcaption { padding: 14px 16px 16px; font-size: 14.5px; color: var(--ink-soft); border-top: 1px solid var(--line); }
+  .shot .app { display: block; font-weight: 650; color: var(--ink); font-size: 14px; margin-bottom: 5px; }
+  .shot .app a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line); }
+  .shot .app a:hover { color: var(--accent); border-color: var(--accent); }
+  figure { margin: 0; }
+
+  /* ---- 3. 方向卡 ---- */
+  .opt { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 18px; }
+  .opt.rec { border-color: var(--accent); border-width: 2px; }
+  .opt h4 { margin: 0 0 4px; font-size: 17px; }
+  .opt .tag { display: inline-block; font-size: 12px; font-weight: 650; padding: 2px 9px; border-radius: 20px;
+    background: var(--accent); color: #fff; margin-left: 10px; vertical-align: 2px; }
+  .opt .sub { color: var(--ink-faint); font-size: 14px; margin: 0 0 14px; }
+  .pc { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .pc h5 { margin: 0 0 6px; font-size: 13px; letter-spacing: .05em; text-transform: uppercase; }
+  .pc .p h5 { color: var(--good); }
+  .pc .c h5 { color: var(--accent); }
+  .pc ul { padding-left: 18px; margin: 0; font-size: 15px; }
+
+  /* ---- 4. 邊界清單 ---- */
+  .edge { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 4px 24px 8px; }
+  .edge h4 { font-size: 15px; margin: 20px 0 8px; }
+  .edge ul { font-size: 15px; }
+
+  .callout { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 16px 20px;
+    border-radius: 0 var(--radius) var(--radius) 0; margin: 24px 0; }
+  .callout.good { border-color: var(--good); background: var(--good-soft); }
+  .callout.warn { border-color: var(--warn); background: var(--warn-soft); }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout strong { display: block; margin-bottom: 6px; }
+
+  code { background: #f0eee9; padding: 1px 5px; border-radius: 4px; font-size: 14px; font-family: ui-monospace, Menlo, monospace; }
+  footer { margin-top: 80px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-faint); }
+
+  @media (max-width: 720px) {
+    .wrap { padding: 32px 18px 80px; }
+    h1 { font-size: 27px; }
+    nav.toc ol { columns: 1; }
+    .pc { grid-template-columns: 1fr; gap: 14px; }
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16150f; --surface: #1e1d17; --ink: #f0ede4; --ink-soft: #b8b4a8; --ink-faint: #8a877c;
+      --line: #34322a; --accent: #e5915c; --accent-soft: #2a2018; --good: #7cc79b; --good-soft: #1a2620;
+      --warn: #d6b45f; --warn-soft: #262013; }
+    header.top { border-color: var(--ink-soft); }
+    th { border-color: var(--ink-soft); }
+    .shot img { background: #26241d; }
+    code { background: #2a2822; }
+    .opt .tag { color: #16150f; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <p class="eyebrow">競品分析 · 供設計討論用</p>
+  <h1>【一句話說出這份報告要解決什麼決定】</h1>
+  <p class="lede">【先說框架：這些產品在替使用者解決什麼問題、使用者腦中的想像長什麼樣、他會經過哪些時刻。再說每個競品設計會怎麼被放進這個框架評估。】</p>
+  <p class="meta">來源：【Mobbin / 其他】· 掃過 N 個畫面，選出 M 張 · 對應【ticket 或規格連結】</p>
+</header>
+
+<nav class="toc">
+  <h4>這份報告回答什麼</h4>
+  <ol>
+    <li><a href="#sm">使用者在解決什麼問題：心智模型與旅程</a></li>
+    <li><a href="#s1">【規格目前的缺口】</a></li>
+    <li><a href="#sa">【議題 A】</a></li>
+    <li><a href="#sg">【可選方向】</a></li>
+    <li><a href="#sh">邊界情況清單</a></li>
+    <li><a href="#si">對照現有程式碼</a></li>
+    <li><a href="#sz">搜尋紀錄</a></li>
+  </ol>
+</nav>
+
+<!-- ===== 區塊 1：框架區 ===== -->
+<h2 id="sm"><span class="num">0</span>使用者在解決什麼問題：心智模型與旅程</h2>
+<p class="section-q">【在比較誰的介面好之前，先講清楚這些產品在替使用者解決什麼。這一節是後面每一節的評估依據。】</p>
+
+<h3>【問題的一句話定義】</h3>
+<p>【例如：問題不是「設定」，是「期待校準」。這句話會決定後面所有判斷的方向。】</p>
+
+<h3>使用者腦中的幾種模型</h3>
+<p>【說明分歧軸是什麼——例如「誰決定」與「作用範圍」。⚠️ 每個題目重新推導，不要沿用上一份報告的那一組。】</p>
+
+<div class="mm">
+<svg viewBox="0 0 880 300" role="img" aria-label="【心智模型光譜圖的說明】">
+  <defs>
+    <marker id="arw" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--ink-faint)"/>
+    </marker>
+  </defs>
+  <g font-family="-apple-system, 'Noto Sans TC', sans-serif">
+    <!-- 每個模型一張卡：標題 + 使用者心裡的話 + 作用範圍 badge。依模型數量調整 x 座標 -->
+    <rect x="20" y="24" width="185" height="112" rx="8" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+    <text x="36" y="50" font-size="16" font-weight="700" fill="var(--ink)">【模型一】</text>
+    <text x="36" y="76" font-size="12.5" fill="var(--ink-soft)">「【使用者心裡</text>
+    <text x="36" y="94" font-size="12.5" fill="var(--ink-soft)">怎麼想】」</text>
+    <rect x="36" y="106" width="66" height="19" rx="9.5" fill="var(--accent-soft)"/>
+    <text x="69" y="119" font-size="11" fill="var(--accent)" text-anchor="middle">【範圍】</text>
+  </g>
+  <line x1="20" y1="180" x2="856" y2="180" stroke="var(--ink-faint)" stroke-width="1.5" marker-end="url(#arw)"/>
+  <g font-size="12" fill="var(--ink-faint)" font-family="-apple-system, 'Noto Sans TC', sans-serif">
+    <text x="20" y="202">【軸的左端】</text>
+    <text x="856" y="202" text-anchor="end">【軸的右端】</text>
+  </g>
+  <g fill="var(--accent)"><circle cx="112" cy="180" r="5"/></g>
+  <g font-size="12.5" fill="var(--ink)" text-anchor="middle" font-family="-apple-system, 'Noto Sans TC', sans-serif">
+    <text x="112" y="248" font-size="11" fill="var(--ink-faint)">對應我們的</text>
+    <text x="112" y="268">【我們的哪個功能】</text>
+  </g>
+</svg>
+</div>
+
+<div class="callout warn">
+  <strong>【最大的失敗來源是什麼】</strong>
+  <p>【使用者最容易把哪兩種模型混淆、混淆之後會發生什麼、為什麼那不是使用者的錯。】</p>
+</div>
+
+<h3>一段旅程裡的幾個時刻</h3>
+<div class="tablewrap journey">
+<table>
+  <thead><tr><th>時刻</th><th>使用者心裡的問題</th><th>該由什麼來回答</th><th>我們現在的狀態</th></tr></thead>
+  <tbody>
+    <tr><td>① 【時刻】</td><td>【他心裡在問什麼】</td><td>【什麼元件負責回答】</td><td>【已有／全新／有但不完整】</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ===== 區塊 2：案例卡（每個議題重複一組） ===== -->
+<h2 id="sa"><span class="num">A</span>【議題標題】</h2>
+<p class="section-q">【這個議題屬於哪一種心智模型、幾種做法的分歧點在哪。】</p>
+
+<h3>做法一：【名稱】</h3>
+<p class="lens">
+  <span><b>假設使用者這樣想：</b>【它預設的心智模型】</span>
+  <span><b>在旅程的哪一步發言：</b>【對回上面的時刻編號】</span>
+  <span><b>假設落空時會怎樣：</b>【失效情境，要具體到能想像畫面】</span>
+</p>
+
+<div class="shots"><!-- 手機截圖改用 class="shots mobile" -->
+  <figure class="shot">
+    <a class="img" href="【原始來源網址】" target="_blank" rel="noopener">
+      <img src="【報告檔名】-assets/【檔名】.webp" alt="【描述畫面上看得到什麼】">
+    </a>
+    <figcaption><span class="app"><a href="【原始來源網址】">【產品名】</a></span>【這張圖在講什麼、值得注意的細節。標明哪些是畫面上觀察到的、哪些是推論。】</figcaption>
+  </figure>
+</div>
+
+<div class="callout good">
+  <strong>我的建議：【哪一種】</strong>
+  <p>【理由要綁回旅程時刻或心智模型，不要只說「比較清楚」。】</p>
+  <p>什麼條件下該換做法：【具體的觸發條件】</p>
+</div>
+
+<!-- ===== 區塊 3：方向卡 ===== -->
+<h2 id="sg"><span class="num">G</span>可選方向</h2>
+<p class="section-q">【從最小到最完整排列。比較基準寫清楚——建議用「回答了旅程裡的幾個時刻」。】</p>
+
+<div class="opt">
+  <h4>方向一：【名稱】<span class="tag">最小</span></h4>
+  <p class="sub">【一句話說明做什麼。至少要有一個「小到不好意思」的選項。】</p>
+  <p class="lens">
+    <span><b>回答了：</b>【時刻】。<b>沒回答：</b>【時刻】。</span>
+    <span><b>它賭的是：</b>【這個方向成立的前提】</span>
+  </p>
+  <div class="pc">
+    <div class="p"><h5>好處</h5><ul><li>【】</li></ul></div>
+    <div class="c"><h5>代價</h5><ul><li>【】</li></ul></div>
+  </div>
+</div>
+
+<div class="opt rec">
+  <h4>方向二：【名稱】<span class="tag">建議</span></h4>
+  <p class="sub">【建議的那個用 .opt.rec，並放在中間或最前面，讓使用者可以直接同意或反駁。】</p>
+  <div class="pc">
+    <div class="p"><h5>好處</h5><ul><li>【】</li></ul></div>
+    <div class="c"><h5>代價</h5><ul><li>【】</li></ul></div>
+  </div>
+</div>
+
+<!-- ===== 區塊 4：邊界清單 ===== -->
+<h2 id="sh"><span class="num">H</span>邊界情況清單</h2>
+<p class="section-q">規格目前沒寫、但實作一定會撞到的情況。建議在進 RD 之前逐條給出答案。</p>
+<div class="edge">
+  <h4>【分類，例如某個功能】</h4>
+  <ul>
+    <li>【數量上限到了怎麼辦】</li>
+    <li>【空值／一個都沒有時顯示什麼】</li>
+    <li>【權限不足或方案限制時，隱藏還是停用並說明】</li>
+    <li>【進行中被取消／中斷會怎樣】</li>
+    <li>【兩個設定衝突時以誰為準】</li>
+    <li>【文字過長、溢出怎麼截斷】</li>
+  </ul>
+</div>
+
+<!-- ===== 程式碼對照 ===== -->
+<h2 id="si"><span class="num">I</span>對照現有程式碼</h2>
+<p class="section-q">在討論做多大之前，先看已經有什麼。</p>
+<div class="tablewrap">
+<table>
+  <thead><tr><th>需要的東西</th><th>現況</th><th>說明</th></tr></thead>
+  <tbody>
+    <tr><td>【零件】</td><td>已經有／全新</td><td>【在哪、可以怎麼沿用】</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ===== 搜尋紀錄 ===== -->
+<h2 id="sz"><span class="num">Z</span>搜尋紀錄</h2>
+<p class="section-q">留給之後要延伸研究的人，也讓覆蓋度可以被檢驗。</p>
+<ul>
+  <li>【搜尋角度一】——找到什麼、淘汰了什麼、為什麼</li>
+</ul>
+<div class="callout">
+  <strong>反例盤的結果</strong>
+  <p>【對最強的結論找過哪些反證、找到沒有。找不到要說明找過哪些方向，不能當作結論被證實。】</p>
+</div>
+
+<footer>
+  <p>截圖版權屬各原始產品，僅供內部設計討論。每張圖的來源連結在圖說的產品名稱上。</p>
+</footer>
+
+</div>
+</body>
+</html>

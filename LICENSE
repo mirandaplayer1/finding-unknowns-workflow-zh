@@ -1,0 +1,33 @@
+MIT License
+
+Copyright (c) 2026 Miranda Wu
+
+The skill and template text in this repository is an original implementation,
+written in Traditional Chinese and English, of the "finding your unknowns"
+workflow described publicly by Thariq Shihipar (Anthropic) in "A Field Guide
+to Claude Fable 5: Finding Your Unknowns". Credit for the techniques and the
+"finding your unknowns" framing belongs to the original author.
+
+Parts of the packaging approach (README structure, the one-file guidance
+distribution, and several skill mechanisms noted in the commit history) were
+inspired by the community repository Neeeophytee/finding-unknowns-skills
+(MIT), whose instruction text is its author's own distillation of the same
+essays.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

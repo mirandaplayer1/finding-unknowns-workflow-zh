@@ -1,0 +1,148 @@
+<!--
+Comment layer: reusable snippet. Embed this in every HTML output meant for humans to read.
+
+How to use (three steps):
+1. Paste the <style> block before the page's </style>.
+2. Paste the <body footer> block at the end of the page's main container, before </body>.
+3. Paste the <script> block before </body>.
+
+What it does:
+- Scans the page for .card, .step, and every <h2> section, attaching a collapsible comment box to each.
+- A sticky footer bar shows the comment count and copies everything as structured text to paste back into the conversation.
+- Comments persist in localStorage, surviving page refreshes.
+
+To change what it attaches to, edit the three querySelectorAll calls in the script.
+It's fine if the page has no .card / .step — the h2 section layer is always there.
+-->
+
+<!-- ①  Paste before </style>  -->
+<style>
+/* ── Comment layer ── */
+  .cmt{margin:6px 0 18px}
+  .cmt-btn{appearance:none;border:1px dashed var(--line);background:#fff;color:var(--muted);
+    font:inherit;font-size:12.5px;padding:3px 10px;border-radius:999px;cursor:pointer;line-height:1.7}
+  .cmt-btn:hover{border-color:var(--purple);color:var(--purple)}
+  .cmt-btn.has{border-style:solid;border-color:var(--amber);color:#8A5A00;background:#FFF8E8}
+  .cmt textarea{display:none;width:100%;box-sizing:border-box;margin-top:8px;min-height:76px;
+    font:inherit;font-size:14px;line-height:1.7;padding:10px 12px;border:1px solid var(--line);
+    border-radius:10px;background:#fff;color:var(--ink);resize:vertical}
+  .cmt textarea:focus{outline:none;border-color:var(--purple)}
+  .cmt.open textarea{display:block}
+  .cmt-hint{font-size:12px;color:var(--muted);margin-top:5px}
+  .cbar{position:sticky;bottom:0;z-index:20;margin:36px -4px 0;padding:12px 16px;
+    background:var(--navy);color:var(--ice);border-radius:12px;display:flex;gap:12px;
+    align-items:center;flex-wrap:wrap;box-shadow:0 6px 24px rgba(30,39,97,.28)}
+  .cbar .n{font-size:14px;flex:1;min-width:180px}
+  .cbar .n b{color:#fff}
+  .cbar button{appearance:none;border:0;font:inherit;font-size:14px;font-weight:700;
+    padding:9px 16px;border-radius:9px;cursor:pointer}
+  .cbar .go{background:#fff;color:var(--navy)}
+  .cbar .go:hover{background:var(--ice)}
+  .cbar .clr{background:transparent;color:var(--ice);border:1px solid rgba(202,220,252,.45);font-weight:400}
+  .cbar .clr:hover{border-color:#fff;color:#fff}
+  @media print{.cmt-btn,.cbar{display:none}}
+</style>
+
+<!-- ②  Paste at the end of the main container, before </body>  -->
+<div class="cbar">
+  <div class="n"><b id="cCount">0</b> comment(s) — when you're done, use the button on the right and paste your feedback back into the conversation for the agent.</div>
+  <button class="clr" id="cClear">Clear</button>
+  <button class="go" id="cCopy">Copy all feedback</button>
+</div>
+
+<!-- ③  Paste before </body>  -->
+<script>
+/* ── Comment layer: comment on any section → one-click copy to paste back ── */
+(function(){
+  var KEY = 'cmt:' + (location.pathname.split('/').pop() || 'page');
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){}
+
+  var boxes = [];
+  function label(el){
+    var t = el.querySelector('.step-title') || el.querySelector('h3') || el;
+    return (t.textContent || '').trim().replace(/\s+/g,' ').slice(0,60);
+  }
+  function build(name){
+    var wrap = document.createElement('div');
+    wrap.className = 'cmt';
+    var btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'cmt-btn'; btn.textContent = '💬 Comment';
+    var ta = document.createElement('textarea');
+    ta.placeholder = 'Feedback, questions, or changes for "' + name + '"...';
+    ta.value = saved[name] || '';
+    wrap.appendChild(btn); wrap.appendChild(ta);
+    btn.addEventListener('click', function(){
+      wrap.classList.toggle('open');
+      if (wrap.classList.contains('open')) ta.focus();
+    });
+    ta.addEventListener('input', sync);
+    if (ta.value) wrap.classList.add('open');
+    boxes.push({name:name, ta:ta, btn:btn, wrap:wrap});
+    return wrap;
+  }
+
+  /* Cards live in a CSS grid; the comment box must go inside the card so it doesn't break the layout */
+  document.querySelectorAll('.card').forEach(function(c){
+    c.appendChild(build('Card: ' + label(c)));
+  });
+  document.querySelectorAll('.step').forEach(function(s){
+    s.parentNode.insertBefore(build('Step: ' + label(s)), s.nextSibling);
+  });
+  /* Section-level comments go at the end of the section (before the next h2) */
+  document.querySelectorAll('h2').forEach(function(h){
+    var name = 'Section: ' + h.textContent.trim();
+    var node = h, last = h;
+    while ((node = node.nextElementSibling) && node.tagName !== 'H2') last = node;
+    last.parentNode.insertBefore(build(name), last.nextSibling);
+  });
+
+  var countEl = document.getElementById('cCount');
+  function filled(){ return boxes.filter(function(b){ return b.ta.value.trim(); }); }
+  function sync(){
+    var f = filled();
+    countEl.textContent = f.length;
+    boxes.forEach(function(b){ b.btn.classList.toggle('has', !!b.ta.value.trim()); });
+    var out = {};
+    f.forEach(function(b){ out[b.name] = b.ta.value; });
+    try { localStorage.setItem(KEY, JSON.stringify(out)); } catch(e){}
+  }
+
+  function payload(){
+    var f = filled();
+    if (!f.length) return '';
+    var lines = ['## Feedback on "' + document.title + '"', ''];
+    f.forEach(function(b){
+      lines.push('### ' + b.name);
+      lines.push(b.ta.value.trim());
+      lines.push('');
+    });
+    return lines.join('\n').trim();
+  }
+
+  var copyBtn = document.getElementById('cCopy');
+  copyBtn.addEventListener('click', function(){
+    var text = payload();
+    if (!text) { copyBtn.textContent = 'No comments yet'; setTimeout(function(){ copyBtn.textContent = 'Copy all feedback'; }, 1400); return; }
+    function done(){ copyBtn.textContent = '✓ Copied — paste into the conversation'; setTimeout(function(){ copyBtn.textContent = 'Copy all feedback'; }, 2000); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+    function fallback(){
+      var t = document.createElement('textarea');
+      t.value = text; t.style.position='fixed'; t.style.opacity='0';
+      document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); done(); } catch(e){ prompt('Copy this and paste it back into the conversation:', text); }
+      document.body.removeChild(t);
+    }
+  });
+
+  document.getElementById('cClear').addEventListener('click', function(){
+    if (!filled().length) return;
+    boxes.forEach(function(b){ b.ta.value = ''; b.wrap.classList.remove('open'); });
+    sync();
+  });
+
+  sync();
+})();
+</script>

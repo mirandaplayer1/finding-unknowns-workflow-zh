@@ -1,0 +1,304 @@
+<!doctype html>
+<!--
+  Scout report skeleton.
+  This file only defines styles and block types — the section structure is decided by the question at hand; do not copy the section count of a previous report.
+  Four block types:
+    1. Framing     .mm (mental-model diagram) + .journey (journey moments table)
+    2. Case cards  .shots > .shot (screenshot + caption), preceded by .lens (three-line annotation)
+    3. Option cards .opt (.opt.rec is the recommended one)
+    4. Edge-case list .edge
+  Plus .callout (.good / .warn) for conclusions and warnings.
+  Screenshots go in a -assets/ folder named after this file, referenced by relative path.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Topic] Competitive Analysis</title>
+<style>
+  :root {
+    --bg: #fbfaf8; --surface: #ffffff; --ink: #1a1a18; --ink-soft: #55534e;
+    --ink-faint: #86837c; --line: #e6e3dd; --accent: #b4541e; --accent-soft: #fdf1e9;
+    --good: #2f6f4e; --good-soft: #eaf4ee; --warn: #8a6d1f; --warn-soft: #fbf3de;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7; font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", sans-serif; }
+  /* The layout is widened so screenshots are big enough; text blocks are narrowed separately */
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 56px 24px 120px; }
+
+  header.top { border-bottom: 2px solid var(--ink); padding-bottom: 28px; margin-bottom: 44px; }
+  .eyebrow { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin: 0 0 10px; }
+  h1 { font-size: 34px; line-height: 1.25; margin: 0 0 14px; letter-spacing: -.01em; }
+  .lede { font-size: 17px; color: var(--ink-soft); margin: 0; max-width: 62ch; }
+  .meta { margin-top: 20px; font-size: 14px; color: var(--ink-faint); }
+
+  h2 { font-size: 24px; margin: 64px 0 8px; scroll-margin-top: 20px; }
+  h2 .num { color: var(--accent); margin-right: 10px; font-variant-numeric: tabular-nums; }
+  .section-q { color: var(--ink-soft); margin: 0 0 28px; max-width: 64ch; }
+  h3 { font-size: 17px; margin: 36px 0 10px; }
+  p { margin: 0 0 14px; max-width: 68ch; }
+  ul, ol { max-width: 68ch; padding-left: 22px; margin: 0 0 16px; }
+  li { margin-bottom: 8px; }
+
+  nav.toc, .tablewrap, .opt, .edge, .callout, .lens, .mm { max-width: 900px; }
+  nav.toc { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 24px; }
+  nav.toc h4 { margin: 0 0 12px; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); }
+  nav.toc ol { columns: 2; column-gap: 32px; margin: 0; padding-left: 20px; }
+  nav.toc li { margin-bottom: 6px; break-inside: avoid; }
+  nav.toc a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+  nav.toc a:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ---- 1. Framing ---- */
+  .mm { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; margin: 24px 0; }
+  .mm svg { width: 100%; height: auto; display: block; }
+
+  table { width: 100%; border-collapse: collapse; margin: 20px 0 24px; font-size: 15px; }
+  th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-faint); font-weight: 600; border-bottom: 2px solid var(--ink); }
+  td:first-child { font-weight: 600; white-space: nowrap; }
+  .tablewrap { overflow-x: auto; }
+  .journey td:first-child { white-space: normal; }
+
+  /* ---- 2. Case cards ---- */
+  .lens { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--ink-faint);
+    border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 18px; margin: 0 0 4px; font-size: 14.5px; color: var(--ink-soft); }
+  .lens b { color: var(--ink); font-weight: 650; }
+  .lens span { display: block; margin-bottom: 4px; }
+  .lens span:last-child { margin-bottom: 0; }
+
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 24px; margin: 24px 0 8px; }
+  .shots.mobile { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+  .shot { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+  .shot a.img { display: block; position: relative; }
+  .shot a.img::after { content: "Open original source"; position: absolute; inset: auto 0 0 0; background: rgba(0,0,0,.72);
+    color: #fff; font-size: 12px; padding: 6px 10px; opacity: 0; transition: opacity .15s; }
+  .shot a.img:hover::after { opacity: 1; }
+  .shot img { width: 100%; display: block; background: #f2f0ec; }
+  .shot figcaption { padding: 14px 16px 16px; font-size: 14.5px; color: var(--ink-soft); border-top: 1px solid var(--line); }
+  .shot .app { display: block; font-weight: 650; color: var(--ink); font-size: 14px; margin-bottom: 5px; }
+  .shot .app a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line); }
+  .shot .app a:hover { color: var(--accent); border-color: var(--accent); }
+  figure { margin: 0; }
+
+  /* ---- 3. Option cards ---- */
+  .opt { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 18px; }
+  .opt.rec { border-color: var(--accent); border-width: 2px; }
+  .opt h4 { margin: 0 0 4px; font-size: 17px; }
+  .opt .tag { display: inline-block; font-size: 12px; font-weight: 650; padding: 2px 9px; border-radius: 20px;
+    background: var(--accent); color: #fff; margin-left: 10px; vertical-align: 2px; }
+  .opt .sub { color: var(--ink-faint); font-size: 14px; margin: 0 0 14px; }
+  .pc { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .pc h5 { margin: 0 0 6px; font-size: 13px; letter-spacing: .05em; text-transform: uppercase; }
+  .pc .p h5 { color: var(--good); }
+  .pc .c h5 { color: var(--accent); }
+  .pc ul { padding-left: 18px; margin: 0; font-size: 15px; }
+
+  /* ---- 4. Edge-case list ---- */
+  .edge { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 4px 24px 8px; }
+  .edge h4 { font-size: 15px; margin: 20px 0 8px; }
+  .edge ul { font-size: 15px; }
+
+  .callout { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 16px 20px;
+    border-radius: 0 var(--radius) var(--radius) 0; margin: 24px 0; }
+  .callout.good { border-color: var(--good); background: var(--good-soft); }
+  .callout.warn { border-color: var(--warn); background: var(--warn-soft); }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout strong { display: block; margin-bottom: 6px; }
+
+  code { background: #f0eee9; padding: 1px 5px; border-radius: 4px; font-size: 14px; font-family: ui-monospace, Menlo, monospace; }
+  footer { margin-top: 80px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-faint); }
+
+  @media (max-width: 720px) {
+    .wrap { padding: 32px 18px 80px; }
+    h1 { font-size: 27px; }
+    nav.toc ol { columns: 1; }
+    .pc { grid-template-columns: 1fr; gap: 14px; }
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16150f; --surface: #1e1d17; --ink: #f0ede4; --ink-soft: #b8b4a8; --ink-faint: #8a877c;
+      --line: #34322a; --accent: #e5915c; --accent-soft: #2a2018; --good: #7cc79b; --good-soft: #1a2620;
+      --warn: #d6b45f; --warn-soft: #262013; }
+    header.top { border-color: var(--ink-soft); }
+    th { border-color: var(--ink-soft); }
+    .shot img { background: #26241d; }
+    code { background: #2a2822; }
+    .opt .tag { color: #16150f; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <p class="eyebrow">Competitive analysis · For design discussion</p>
+  <h1>[One sentence: what decision this report exists to settle]</h1>
+  <p class="lede">[Lead with the frame: what problem these products solve for the user, what the picture in the user's head looks like, which moments they pass through. Then say how each competitor's design will be evaluated within that frame.]</p>
+  <p class="meta">Sources: [Mobbin / other] · Scanned N screens, selected M · Linked to [ticket or spec link]</p>
+</header>
+
+<nav class="toc">
+  <h4>What this report answers</h4>
+  <ol>
+    <li><a href="#sm">What problem the user is solving: mental models and journey</a></li>
+    <li><a href="#s1">[The spec's current gap]</a></li>
+    <li><a href="#sa">[Issue A]</a></li>
+    <li><a href="#sg">[Possible directions]</a></li>
+    <li><a href="#sh">Edge-case list</a></li>
+    <li><a href="#si">Against the existing code</a></li>
+    <li><a href="#sz">Search log</a></li>
+  </ol>
+</nav>
+
+<!-- ===== Block 1: Framing ===== -->
+<h2 id="sm"><span class="num">0</span>What problem the user is solving: mental models and journey</h2>
+<p class="section-q">[Before comparing whose interface is better, spell out what these products are solving for the user. This section is the evaluation basis for every section that follows.]</p>
+
+<h3>[One-sentence definition of the problem]</h3>
+<p>[For example: the problem isn't "settings," it's "expectation calibration." This sentence sets the direction for every judgment that follows.]</p>
+
+<h3>The models in the user's head</h3>
+<p>[Explain what the axis of divergence is — for example "who decides" and "scope of effect." ⚠️ Re-derive this for every new question; don't reuse the set from a previous report.]</p>
+
+<div class="mm">
+<svg viewBox="0 0 880 300" role="img" aria-label="[Description of the mental-model spectrum diagram]">
+  <defs>
+    <marker id="arw" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--ink-faint)"/>
+    </marker>
+  </defs>
+  <g font-family="-apple-system, 'Noto Sans TC', sans-serif">
+    <!-- One card per model: title + what the user says to themselves + scope badge. Adjust x coordinates to the number of models -->
+    <rect x="20" y="24" width="185" height="112" rx="8" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+    <text x="36" y="50" font-size="16" font-weight="700" fill="var(--ink)">[Model one]</text>
+    <text x="36" y="76" font-size="12.5" fill="var(--ink-soft)">"[What the user</text>
+    <text x="36" y="94" font-size="12.5" fill="var(--ink-soft)">is thinking]"</text>
+    <rect x="36" y="106" width="66" height="19" rx="9.5" fill="var(--accent-soft)"/>
+    <text x="69" y="119" font-size="11" fill="var(--accent)" text-anchor="middle">[Scope]</text>
+  </g>
+  <line x1="20" y1="180" x2="856" y2="180" stroke="var(--ink-faint)" stroke-width="1.5" marker-end="url(#arw)"/>
+  <g font-size="12" fill="var(--ink-faint)" font-family="-apple-system, 'Noto Sans TC', sans-serif">
+    <text x="20" y="202">[Left end of the axis]</text>
+    <text x="856" y="202" text-anchor="end">[Right end of the axis]</text>
+  </g>
+  <g fill="var(--accent)"><circle cx="112" cy="180" r="5"/></g>
+  <g font-size="12.5" fill="var(--ink)" text-anchor="middle" font-family="-apple-system, 'Noto Sans TC', sans-serif">
+    <text x="112" y="248" font-size="11" fill="var(--ink-faint)">Maps to our</text>
+    <text x="112" y="268">[which of our features]</text>
+  </g>
+</svg>
+</div>
+
+<div class="callout warn">
+  <strong>[What the biggest source of failure is]</strong>
+  <p>[Which two models the user most easily confuses, what happens once they do, and why that isn't the user's fault.]</p>
+</div>
+
+<h3>The moments in one journey</h3>
+<div class="tablewrap journey">
+<table>
+  <thead><tr><th>Moment</th><th>The question in the user's head</th><th>What should answer it</th><th>Where we stand today</th></tr></thead>
+  <tbody>
+    <tr><td>① [Moment]</td><td>[What they're asking themselves]</td><td>[Which component answers it]</td><td>[Exists / brand new / exists but incomplete]</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ===== Block 2: Case cards (repeat one set per issue) ===== -->
+<h2 id="sa"><span class="num">A</span>[Issue title]</h2>
+<p class="section-q">[Which mental model this issue belongs to, and where the approaches diverge.]</p>
+
+<h3>Approach one: [Name]</h3>
+<p class="lens">
+  <span><b>Assumes the user thinks:</b> [the mental model it presupposes]</span>
+  <span><b>Where it speaks in the journey:</b> [map back to the moment numbers above]</span>
+  <span><b>What happens when the assumption fails:</b> [failure scenario — concrete enough to picture]</span>
+</p>
+
+<div class="shots"><!-- for mobile screenshots use class="shots mobile" -->
+  <figure class="shot">
+    <a class="img" href="[original source URL]" target="_blank" rel="noopener">
+      <img src="[report filename]-assets/[filename].webp" alt="[Describe what's visible on the screen]">
+    </a>
+    <figcaption><span class="app"><a href="[original source URL]">[Product name]</a></span>[What this shot shows and which details deserve attention. Mark which parts are observed on screen and which are inference.]</figcaption>
+  </figure>
+</div>
+
+<div class="callout good">
+  <strong>My recommendation: [which one]</strong>
+  <p>[Tie the reasoning back to a journey moment or a mental model — never just "it's clearer."]</p>
+  <p>When to switch approaches: [concrete trigger condition]</p>
+</div>
+
+<!-- ===== Block 3: Option cards ===== -->
+<h2 id="sg"><span class="num">G</span>Possible directions</h2>
+<p class="section-q">[Ordered from smallest to most complete. State the comparison baseline — "how many journey moments it answers" is recommended.]</p>
+
+<div class="opt">
+  <h4>Direction one: [Name]<span class="tag">Smallest</span></h4>
+  <p class="sub">[One sentence on what it does. There must be at least one option "embarrassingly small."]</p>
+  <p class="lens">
+    <span><b>Answers:</b> [moments]. <b>Doesn't answer:</b> [moments].</span>
+    <span><b>What it bets on:</b> [the premise this direction depends on]</span>
+  </p>
+  <div class="pc">
+    <div class="p"><h5>Benefits</h5><ul><li>[]</li></ul></div>
+    <div class="c"><h5>Costs</h5><ul><li>[]</li></ul></div>
+  </div>
+</div>
+
+<div class="opt rec">
+  <h4>Direction two: [Name]<span class="tag">Recommended</span></h4>
+  <p class="sub">[Give the recommended one .opt.rec and place it in the middle or first, so the user can agree or push back directly.]</p>
+  <div class="pc">
+    <div class="p"><h5>Benefits</h5><ul><li>[]</li></ul></div>
+    <div class="c"><h5>Costs</h5><ul><li>[]</li></ul></div>
+  </div>
+</div>
+
+<!-- ===== Block 4: Edge-case list ===== -->
+<h2 id="sh"><span class="num">H</span>Edge-case list</h2>
+<p class="section-q">Situations the spec doesn't cover yet but implementation is guaranteed to hit. Answer each one before this goes to engineering.</p>
+<div class="edge">
+  <h4>[Category, e.g. a specific feature]</h4>
+  <ul>
+    <li>[What happens at the quantity cap]</li>
+    <li>[What shows for empty state / when there are none]</li>
+    <li>[Insufficient permissions or plan limits — hide, or disable with an explanation]</li>
+    <li>[What happens when it's cancelled/interrupted mid-flight]</li>
+    <li>[When two settings conflict, which wins]</li>
+    <li>[Overlong text — how does it truncate on overflow]</li>
+  </ul>
+</div>
+
+<!-- ===== Against the code ===== -->
+<h2 id="si"><span class="num">I</span>Against the existing code</h2>
+<p class="section-q">Before debating how big to build, look at what already exists.</p>
+<div class="tablewrap">
+<table>
+  <thead><tr><th>What's needed</th><th>Current state</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>[Part]</td><td>Exists / brand new</td><td>[Where it lives, how it can be reused]</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ===== Search log ===== -->
+<h2 id="sz"><span class="num">Z</span>Search log</h2>
+<p class="section-q">Left for whoever extends this research later — and so coverage can be audited.</p>
+<ul>
+  <li>[Search angle one] — what was found, what was discarded, and why</li>
+</ul>
+<div class="callout">
+  <strong>Result of the counter-evidence pass</strong>
+  <p>[What counter-evidence was sought for the strongest conclusions, and whether any was found. If none was found, state which directions were searched — absence of counter-evidence is not confirmation.]</p>
+</div>
+
+<footer>
+  <p>Screenshots are the property of their respective products, used here for internal design discussion only. Each shot's source link is on the product name in its caption.</p>
+</footer>
+
+</div>
+</body>
+</html>

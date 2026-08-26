@@ -1,0 +1,18 @@
+{
+  "name": "finding-unknowns-workflow-zh",
+  "owner": {
+    "name": "Miranda Wu"
+  },
+  "plugins": [
+    {
+      "name": "finding-unknowns-zh-tw",
+      "source": "./zh-TW",
+      "description": "「先找出未知、再動工」工作流：kickoff／scout／interview／blindspot／quiz／pitch／reflect 七個 skill＋專案檔案分層模板（繁體中文版）"
+    },
+    {
+      "name": "finding-unknowns-en",
+      "source": "./en",
+      "description": "A find-your-unknowns-before-you-build workflow: kickoff / scout / interview / blindspot / quiz / pitch / reflect, plus a project memory file layer (English version)"
+    }
+  ]
+}
