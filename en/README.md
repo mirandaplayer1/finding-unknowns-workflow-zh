@@ -21,8 +21,10 @@ A set of workflow skills that make Claude Code "find the unknowns first, then st
 
 | | You know it | You don't know it |
 |---|---|---|
-| **It exists** | Known knowns: write into the spec | Known unknowns: clarify with `/interview` |
-| **It doesn't exist** | Unknown knowns: taste and conventions, confirm via prototype | Unknown unknowns: scan with `/blindspot` |
+| **It exists** | Known knowns: write into the spec | Known unknowns: `/scout` how the industry solves it |
+| **It doesn't exist** | Unknown knowns: `/interview` asks the obvious out of you | Unknown unknowns: scan with `/blindspot` |
+
+![Four kinds of unknowns](assets/diagrams/unknowns-en.svg)
 
 ## The seven skills
 
@@ -36,6 +38,10 @@ A set of workflow skills that make Claude Code "find the unknowns first, then st
 | At delivery | `/pitch` | Pitch (explainer) for showing others and getting buy-in |
 | After delivery | `/reflect` | Retrospective **in a new conversation**; promote lessons into rules |
 
+One round of work looks like this (solid boxes = skills triggered by one sentence; dashed = run when needed; red = gates):
+
+![Workflow](assets/diagrams/flow-en.svg)
+
 ## File layers (project memory)
 
 `/kickoff` creates these files in the project:
@@ -44,6 +50,8 @@ A set of workflow skills that make Claude Code "find the unknowns first, then st
 - `DECISIONS.md` — decision log (teaching-oriented: options, trade-offs, how to judge it yourself next time)
 - `notes/implementation-notes.md` — this round's plan and deviation log, archived after `/reflect`
 - `WORKFLOW.md` — working rules, auto-loaded via `@WORKFLOW.md` in `CLAUDE.md`
+
+![Skill flow × file layers](assets/diagrams/layers-en.svg)
 
 ## Symptom → which one to run
 

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" font-family="-apple-system,'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif">
+  <rect width="900" height="560" fill="#FFFFFF"/>
+  <text x="50" y="42" font-size="13" font-weight="700" letter-spacing="2" fill="#B98A2E">分解問題</text>
+  <text x="50" y="76" font-size="24" font-weight="700" fill="#232420">四種未知：先看清自己不知道什麼</text>
+
+  <!-- KK -->
+  <rect x="50" y="110" width="390" height="170" rx="12" fill="#EDF1F4"/>
+  <text x="78" y="148" font-size="17" font-weight="700" fill="#232420">已知的已知</text>
+  <text x="78" y="170" font-size="11.5" letter-spacing="1" fill="#8A94A3">KNOWN KNOWNS</text>
+  <text x="78" y="200" font-size="13.5" fill="#3D4450">你明確寫進指令、清楚知道自己要的東西</text>
+  <text x="78" y="236" font-size="13" font-weight="700" fill="#1F2A52">→ 寫進 SPEC.md</text>
+
+  <!-- KU -->
+  <rect x="470" y="110" width="390" height="170" rx="12" fill="#F7EFD9"/>
+  <text x="498" y="148" font-size="17" font-weight="700" fill="#7A5A18">已知的未知</text>
+  <text x="498" y="170" font-size="11.5" letter-spacing="1" fill="#AD9155">KNOWN UNKNOWNS</text>
+  <text x="498" y="200" font-size="13.5" fill="#5B4E2E">你意識到自己還沒想清楚、待釐清的部分</text>
+  <text x="498" y="236" font-size="13" font-weight="700" fill="#7A5A18">→ /scout（做法未定，看業界怎麼解）</text>
+
+  <!-- UK -->
+  <rect x="50" y="300" width="390" height="170" rx="12" fill="#E9E9EC"/>
+  <text x="78" y="338" font-size="17" font-weight="700" fill="#232420">未知的已知</text>
+  <text x="78" y="360" font-size="11.5" letter-spacing="1" fill="#8F8F98">UNKNOWN KNOWNS</text>
+  <text x="78" y="390" font-size="13.5" fill="#3D4450">太理所當然而不會寫下，但一看到就認得</text>
+  <text x="78" y="410" font-size="13.5" fill="#3D4450">（品味、風格、慣例）</text>
+  <text x="78" y="444" font-size="13" font-weight="700" fill="#1F2A52">→ /interview（把理所當然問出來，回填規格）</text>
+
+  <!-- UU -->
+  <rect x="470" y="300" width="390" height="170" rx="12" fill="#1F2A52"/>
+  <text x="498" y="338" font-size="17" font-weight="700" fill="#E8C56B">未知的未知</text>
+  <text x="498" y="360" font-size="11.5" letter-spacing="1" fill="#8B93B8">UNKNOWN UNKNOWNS</text>
+  <text x="498" y="390" font-size="13.5" fill="#DDE1EF">你完全沒考慮到、甚至不知道自己</text>
+  <text x="498" y="410" font-size="13.5" fill="#DDE1EF">不知道的事</text>
+  <text x="498" y="444" font-size="13" font-weight="700" fill="#E8C56B">→ /blindspot</text>
+
+  <text x="50" y="520" font-size="13" fill="#5B5A52">高手的未知較少——但仍為未知預留空間。「減少並預先規劃未知」，正是可以刻意練習的 AI 協作能力。</text>
+</svg>

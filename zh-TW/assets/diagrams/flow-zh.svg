@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" font-family="-apple-system,'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5B6478"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="760" fill="#FFFFFF"/>
+
+  <!-- scout (optional, above) -->
+  <rect x="340" y="55" width="230" height="62" rx="10" fill="#FFFFFF" stroke="#1F2A52" stroke-width="1.8" stroke-dasharray="6 5"/>
+  <text x="455" y="82" text-anchor="middle" font-size="16" font-weight="700" fill="#1F2A52">/scout</text>
+  <text x="455" y="103" text-anchor="middle" font-size="12" fill="#5B6478">做法未定，看業界怎麼解</text>
+  <line x1="455" y1="117" x2="455" y2="183" stroke="#5B6478" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#ar)"/>
+
+  <!-- band 1 -->
+  <rect x="40" y="150" width="1120" height="150" rx="12" fill="#EAF3EC"/>
+  <text x="62" y="232" font-size="15" font-weight="700" fill="#2E6B46">開工前</text>
+
+  <rect x="330" y="193" width="250" height="64" rx="10" fill="#1F2A52"/>
+  <text x="455" y="220" text-anchor="middle" font-size="17" font-weight="700" fill="#FFFFFF">/kickoff</text>
+  <text x="455" y="241" text-anchor="middle" font-size="12" fill="#C9CFE3">建骨架＋想法 → 規格初稿</text>
+
+  <line x1="580" y1="225" x2="648" y2="225" stroke="#5B6478" stroke-width="1.6" marker-end="url(#ar)"/>
+  <text x="614" y="215" text-anchor="middle" font-size="12" font-weight="700" fill="#B4442C">核可</text>
+
+  <rect x="650" y="193" width="230" height="64" rx="10" fill="#1F2A52"/>
+  <text x="765" y="220" text-anchor="middle" font-size="17" font-weight="700" fill="#FFFFFF">/interview</text>
+  <text x="765" y="241" text-anchor="middle" font-size="12" fill="#C9CFE3">釐清「已知的未知」</text>
+
+  <line x1="880" y1="216" x2="926" y2="216" stroke="#5B6478" stroke-width="1.6" marker-end="url(#ar)"/>
+  <line x1="926" y1="234" x2="880" y2="234" stroke="#5B6478" stroke-width="1.6" marker-end="url(#ar)"/>
+
+  <rect x="928" y="193" width="212" height="64" rx="10" fill="#1F2A52"/>
+  <text x="1034" y="220" text-anchor="middle" font-size="17" font-weight="700" fill="#FFFFFF">/blindspot</text>
+  <text x="1034" y="241" text-anchor="middle" font-size="12" fill="#C9CFE3">掃「未知的未知」＋教學</text>
+
+  <!-- gate to band 2 -->
+  <path d="M1034,257 L1034,278 L490,278 L490,336" fill="none" stroke="#5B6478" stroke-width="1.6" marker-end="url(#ar)"/>
+  <text x="762" y="294" text-anchor="middle" font-size="12.5" font-weight="700" fill="#B4442C">未知收斂、規格核可，才動工</text>
+
+  <!-- band 2 -->
+  <rect x="40" y="340" width="1120" height="130" rx="12" fill="#FBF3E4"/>
+  <text x="62" y="412" font-size="15" font-weight="700" fill="#9A6B1F">實作中</text>
+
+  <rect x="380" y="372" width="220" height="64" rx="10" fill="#FFF9EC" stroke="#B98A2E" stroke-width="2"/>
+  <text x="490" y="399" text-anchor="middle" font-size="16" font-weight="700" fill="#7A5A18">實作計畫</text>
+  <text x="490" y="420" text-anchor="middle" font-size="12" fill="#8A6D1F">最可能改的放最前面</text>
+
+  <line x1="600" y1="404" x2="698" y2="404" stroke="#5B6478" stroke-width="1.6" marker-end="url(#ar)"/>
+  <text x="649" y="394" text-anchor="middle" font-size="12" font-weight="700" fill="#B4442C">核可</text>
+
+  <rect x="700" y="372" width="250" height="64" rx="10" fill="#FFF9EC" stroke="#B98A2E" stroke-width="2"/>
+  <text x="825" y="399" text-anchor="middle" font-size="16" font-weight="700" fill="#7A5A18">實作</text>
+  <text x="825" y="420" text-anchor="middle" font-size="12" fill="#8A6D1F">照規格做，決策與偏離即時沉澱</text>
+
+  <!-- to band 3 -->
+  <path d="M825,436 L825,452 L490,452 L490,506" fill="none" stroke="#5B6478" stroke-width="1.6" marker-end="url(#ar)"/>
+  <text x="660" y="466" text-anchor="middle" font-size="12" fill="#5B6478">做完</text>
+
+  <!-- band 3 -->
+  <rect x="40" y="510" width="1120" height="130" rx="12" fill="#EFEFFA"/>
+  <text x="62" y="582" font-size="15" font-weight="700" fill="#4A4390">交付後</text>
+
+  <rect x="380" y="542" width="220" height="64" rx="10" fill="#1F2A52"/>
+  <text x="490" y="569" text-anchor="middle" font-size="17" font-weight="700" fill="#FFFFFF">/quiz</text>
+  <text x="490" y="590" text-anchor="middle" font-size="12" fill="#C9CFE3">變更報告＋測驗</text>
+
+  <line x1="600" y1="574" x2="668" y2="574" stroke="#5B6478" stroke-width="1.6" marker-end="url(#ar)"/>
+  <text x="634" y="564" text-anchor="middle" font-size="12" font-weight="700" fill="#B4442C">全對</text>
+
+  <rect x="670" y="542" width="210" height="64" rx="10" fill="#FFFFFF" stroke="#1F2A52" stroke-width="1.8" stroke-dasharray="6 5"/>
+  <text x="775" y="569" text-anchor="middle" font-size="17" font-weight="700" fill="#1F2A52">/pitch</text>
+  <text x="775" y="590" text-anchor="middle" font-size="12" fill="#5B6478">說帖要 buy-in，需要時</text>
+
+  <line x1="880" y1="574" x2="938" y2="574" stroke="#5B6478" stroke-width="1.6" marker-end="url(#ar)"/>
+
+  <rect x="940" y="542" width="200" height="64" rx="10" fill="#1F2A52"/>
+  <text x="1040" y="569" text-anchor="middle" font-size="17" font-weight="700" fill="#FFFFFF">/reflect</text>
+  <text x="1040" y="590" text-anchor="middle" font-size="12" fill="#C9CFE3">開新對話，復盤晉升</text>
+
+  <!-- loop back -->
+  <path d="M1040,606 L1040,672 L120,672 L120,300" fill="none" stroke="#4A4390" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#ar)"/>
+  <text x="580" y="662" text-anchor="middle" font-size="12.5" fill="#4A4390">↺ 歸檔筆記、晉升規則，帶著更聰明的 WORKFLOW.md 進下一輪</text>
+
+  <!-- legend -->
+  <rect x="70" y="712" width="26" height="15" rx="4" fill="#1F2A52"/>
+  <text x="104" y="724" font-size="12.5" fill="#232420">skill（說一句話觸發）</text>
+  <rect x="260" y="712" width="26" height="15" rx="4" fill="#FFFFFF" stroke="#1F2A52" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="294" y="724" font-size="12.5" fill="#232420">需要時才跑</text>
+  <rect x="404" y="712" width="26" height="15" rx="4" fill="#FFF9EC" stroke="#B98A2E" stroke-width="1.5"/>
+  <text x="438" y="724" font-size="12.5" fill="#232420">實作（非 skill）</text>
+  <text x="562" y="724" font-size="12.5" font-weight="700" fill="#B4442C">紅字＝過不了就不往下走的門檻</text>
+</svg>

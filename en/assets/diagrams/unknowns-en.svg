@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+  <rect width="900" height="560" fill="#FFFFFF"/>
+  <text x="50" y="42" font-size="13" font-weight="700" letter-spacing="2" fill="#B98A2E">DECOMPOSE THE PROBLEM</text>
+  <text x="50" y="76" font-size="24" font-weight="700" fill="#232420">Four kinds of unknowns: see what you don't know first</text>
+
+  <rect x="50" y="110" width="390" height="170" rx="12" fill="#EDF1F4"/>
+  <text x="78" y="148" font-size="17" font-weight="700" fill="#232420">Known knowns</text>
+  <text x="78" y="182" font-size="13.5" fill="#3D4450">What you state explicitly in the prompt —</text>
+  <text x="78" y="202" font-size="13.5" fill="#3D4450">you know exactly what you want</text>
+  <text x="78" y="238" font-size="13" font-weight="700" fill="#1F2A52">→ write it into SPEC.md</text>
+
+  <rect x="470" y="110" width="390" height="170" rx="12" fill="#F7EFD9"/>
+  <text x="498" y="148" font-size="17" font-weight="700" fill="#7A5A18">Known unknowns</text>
+  <text x="498" y="182" font-size="13.5" fill="#5B4E2E">The parts you realize you haven't thought</text>
+  <text x="498" y="202" font-size="13.5" fill="#5B4E2E">through yet — waiting to be clarified</text>
+  <text x="498" y="238" font-size="13" font-weight="700" fill="#7A5A18">→ /scout — see how the industry solves it</text>
+
+  <rect x="50" y="300" width="390" height="170" rx="12" fill="#E9E9EC"/>
+  <text x="78" y="338" font-size="17" font-weight="700" fill="#232420">Unknown knowns</text>
+  <text x="78" y="372" font-size="13.5" fill="#3D4450">Too obvious to write down, but you'd recognize</text>
+  <text x="78" y="392" font-size="13.5" fill="#3D4450">it on sight (taste, style, conventions)</text>
+  <text x="78" y="428" font-size="13" font-weight="700" fill="#1F2A52">→ /interview — ask the obvious out of you, into the spec</text>
+
+  <rect x="470" y="300" width="390" height="170" rx="12" fill="#1F2A52"/>
+  <text x="498" y="338" font-size="17" font-weight="700" fill="#E8C56B">Unknown unknowns</text>
+  <text x="498" y="372" font-size="13.5" fill="#DDE1EF">What you never considered — you don't even</text>
+  <text x="498" y="392" font-size="13.5" fill="#DDE1EF">know you don't know it</text>
+  <text x="498" y="428" font-size="13" font-weight="700" fill="#E8C56B">→ /blindspot</text>
+
+  <text x="50" y="520" font-size="13" fill="#5B5A52">Experts have fewer unknowns — but still leave room for them. Reducing and planning for unknowns is a trainable AI-collaboration skill.</text>
+</svg>

@@ -6,6 +6,10 @@
 
 A workflow for Claude Code that finds your unknowns before you build: draft a spec from a rough idea, interview away the ambiguity, scan for blindspots, pass a quiz before delivery, and distill lessons afterwards — with a project file layer that makes decisions survive across conversations.
 
+![流程圖 / Workflow](zh-TW/assets/diagrams/flow-zh.svg)
+
+（English diagrams: see [en/README.md](en/README.md)）
+
 ## 快速開始 / Quick start
 
 ```bash

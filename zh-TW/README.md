@@ -21,8 +21,10 @@ cp -R skills/* ~/.claude/skills/
 
 | | 你知道 | 你不知道 |
 |---|---|---|
-| **它存在** | 已知的已知：寫進規格 | 已知的未知：`/interview` 釐清 |
-| **它不存在** | 未知的已知：品味與慣例，原型確認 | 未知的未知：`/blindspot` 掃描 |
+| **它存在** | 已知的已知：寫進規格 | 已知的未知：`/scout` 看業界怎麼解 |
+| **它不存在** | 未知的已知：`/interview` 把理所當然問出來 | 未知的未知：`/blindspot` 掃描 |
+
+![四種未知](assets/diagrams/unknowns-zh.svg)
 
 ## 七個 skill
 
@@ -36,6 +38,10 @@ cp -R skills/* ~/.claude/skills/
 | 交付時 | `/pitch` | 說帖／explainer，給別人看、要 buy-in |
 | 交付後 | `/reflect` | **開新對話**復盤，把教訓晉升成規則 |
 
+一輪工作長這樣（實線框＝說一句話就會觸發的 skill；虛線＝需要時才跑；紅字＝過不了就不往下走的門檻）：
+
+![流程圖](assets/diagrams/flow-zh.svg)
+
 ## 檔案分層（專案記憶）
 
 `/kickoff` 會在專案建立這些檔案：
@@ -44,6 +50,8 @@ cp -R skills/* ~/.claude/skills/
 - `DECISIONS.md`——決策記錄（教學導向：記選項、取捨、下次怎麼自己判斷）
 - `notes/implementation-notes.md`——本輪計畫與偏離記錄，`/reflect` 後歸檔
 - `WORKFLOW.md`——工作規則，經 `CLAUDE.md` 的 `@WORKFLOW.md` 自動載入
+
+![Skill 流程 × 檔案分層](assets/diagrams/layers-zh.svg)
 
 ## 症狀 → 該跑哪個
 
