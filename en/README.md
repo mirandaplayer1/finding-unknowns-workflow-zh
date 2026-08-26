@@ -32,7 +32,7 @@ A set of workflow skills that make Claude Code "find the unknowns first, then st
 |---|---|---|
 | Before work | `/kickoff` | Build the scaffold (if missing) + draft SPEC.md from a rough idea |
 | Before work | `/scout` | When the approach is undecided, research how the industry solves it (produces a comparison report) |
-| Before work | `/interview` | Clarify "known unknowns" one question at a time; answers flow back into the spec |
+| Before work | `/interview` | Ask out "unknown knowns" (taken-for-granted assumptions) one question at a time; answers flow back into the spec |
 | Before work | `/blindspot` | Scan for "unknown unknowns" + domain crash course |
 | Before delivery | `/quiz` | Change report + comprehension quiz — deliver only on a perfect score |
 | At delivery | `/pitch` | Pitch (explainer) for showing others and getting buy-in |

@@ -24,7 +24,7 @@
 
   <rect x="650" y="193" width="230" height="64" rx="10" fill="#1F2A52"/>
   <text x="765" y="220" text-anchor="middle" font-size="17" font-weight="700" fill="#FFFFFF">/interview</text>
-  <text x="765" y="241" text-anchor="middle" font-size="12" fill="#C9CFE3">clarify known unknowns</text>
+  <text x="765" y="241" text-anchor="middle" font-size="12" fill="#C9CFE3">ask out unknown knowns</text>
 
   <line x1="880" y1="216" x2="926" y2="216" stroke="#5B6478" stroke-width="1.6" marker-end="url(#ar)"/>
   <line x1="926" y1="234" x2="880" y2="234" stroke="#5B6478" stroke-width="1.6" marker-end="url(#ar)"/>

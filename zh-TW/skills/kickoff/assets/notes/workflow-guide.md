@@ -18,10 +18,10 @@
 │   └── html-comment-layer.html ← 留言層片段：所有 HTML 產出直接內嵌
 └── .claude/skills/
     ├── kickoff/SKILL.md       ← 開案：從粗略想法起草 SPEC.md 初稿
-    ├── interview/SKILL.md     ← 動工前：訪談釐清「已知的未知」
+    ├── interview/SKILL.md     ← 動工前：問出「未知的已知」與模糊處
     ├── blindspot/SKILL.md     ← 動工前：掃描「未知的未知」＋領域速成教學
     ├── quiz/SKILL.md          ← 交付前：變更報告＋測驗（自己懂了沒）
-    ├── pitch/SKILL.md         ← 交付時：說帖／explainer（讓別人懂、要 buy-in）
+    ├── pitch/SKILL.md         ← 交付時：提案／explainer（讓別人懂、要 buy-in）
     └── reflect/SKILL.md       ← 完工後：反思與記憶晉升
 ```
 
@@ -37,7 +37,7 @@
 
 ## HTML 作為輸出與互動介面
 
-給人讀的長內容、給人操作的介面，一律用單一自包含 HTML 檔（存 `notes/`，隨反思一起歸檔）：kickoff 的方向比較頁、interview 的訪談問卷、blindspot 的領域講義、實作前的實作計畫頁、quiz 的互動測驗、pitch 的說帖、reflect 的晉升檢核頁。三條紀律：（一）**互動迴路必須閉合**——agent 看不到瀏覽器裡的操作，每個互動頁都以「複製結果」按鈕收尾，把選擇變回文字貼回對話才算數；（二）**頁面照 ADHD 格式寫**——第一屏就是結論與下一步、多步驟編號、清單分組分層（不丟重要訊息）、細節收合；（三）**格式分工**——markdown 留給恆在層與需要版本比對的檔案（SPEC、WORKFLOW、DECISIONS），HTML 給人看與操作。（來源：Thariq〈The Unreasonable Effectiveness of HTML〉，claude.com/blog）
+給人讀的長內容、給人操作的介面，一律用單一自包含 HTML 檔（存 `notes/`，隨反思一起歸檔）：kickoff 的方向比較頁、interview 的訪談問卷、blindspot 的領域講義、實作前的實作計畫頁、quiz 的互動測驗、pitch 的提案、reflect 的晉升檢核頁。三條紀律：（一）**互動迴路必須閉合**——agent 看不到瀏覽器裡的操作，每個互動頁都以「複製結果」按鈕收尾，把選擇變回文字貼回對話才算數；（二）**頁面照 ADHD 格式寫**——第一屏就是結論與下一步、多步驟編號、清單分組分層（不丟重要訊息）、細節收合；（三）**格式分工**——markdown 留給恆在層與需要版本比對的檔案（SPEC、WORKFLOW、DECISIONS），HTML 給人看與操作。（來源：Thariq〈The Unreasonable Effectiveness of HTML〉，claude.com/blog）
 
 ## 使用者視角：你實際要做的事
 
@@ -46,7 +46,7 @@
 1. 開案（二選一）：裝了使用者層的 `kickoff` skill，就在空資料夾開 `claude` 直接說「我想做○○○」——骨架缺件會先自動建好，接著起草規格；或手動複製本模板資料夾再說「我想做○○○」。之後就是：回答起點問題、挑方向、逐節確認規格、核可。
 2. 先說「訪談我」（一次答一題，答不出就說不知道），新領域再說「掃盲點」（讀速成教學＋學怎麼下指令）。熟領域可跳過掃盲點。
 3. 說「開始做」→ 看本輪計畫前幾項、說 OK、放手。工作中它只為「待確認的未知」來找你。
-4. 說「考我」→ 讀變更報告、作答、全對才交付；成果要給別人看就再說「pitch」，拿一份可分享的說帖。
+4. 說「考我」→ 讀變更報告、作答、全對才交付；成果要給別人看就再說「pitch」，拿一份可分享的提案。
 5. **開新對話**說「反思」→ 看晉升／刪除清單、同意或否決。這是唯一要記得換對話的一步。
 6. 平時想學習就翻 DECISIONS.md；quiz 答錯的題目對應的決策條目要重點看。
 

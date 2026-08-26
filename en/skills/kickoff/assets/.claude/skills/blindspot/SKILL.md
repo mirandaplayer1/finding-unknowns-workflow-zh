@@ -18,7 +18,7 @@ The purpose has two layers: (1) surface the user's "unknown unknowns"; (2) **tea
    - **Common failure patterns**: the holes beginners fall into most, and the symptoms that signal the direction is wrong.
 4. **Produce "better instruction" examples**: Rewrite their original request into two or three concrete instruction examples, explaining what changed and why — e.g. "make my video look nice" becomes "grade toward teal-orange, keep skin tones natural, raise contrast one notch". These are ready to copy and use directly, and also models to learn from.
 5. **Presenting the teaching**: Combine the crash course (step 3) and the instruction examples (step 4) into a **single-page HTML handout** (saved to `notes/`) — an SVG diagram of the mental model, the jargon table, good/bad examples side by side, and a copy button on every instruction example. Long-form content meant for humans to read goes in HTML, not long markdown.
-6. **Fill back and hand off**: Write new facts and judgment criteria into `SPEC.md` (judgment criteria usually belong under acceptance criteria or reference examples); ambiguities that are "known unknowns" go into the unknowns list; if the list still has open items, go back and run `/interview`; only start work once everything has converged.
+6. **Fill back and hand off**: Write new facts and judgment criteria into `SPEC.md` (judgment criteria usually belong under acceptance criteria or reference examples); newly surfaced ambiguities go into the unknowns list; if the list still has open items, go back and run `/interview`; only start work once everything has converged.
 
 ## Principles
 
