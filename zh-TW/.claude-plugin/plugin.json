@@ -1,6 +1,6 @@
 {
   "name": "finding-unknowns-zh-tw",
-  "description": "「先找出未知、再動工」工作流（繁體中文）：kickoff 建骨架＋起草規格、scout 競品調查、interview 釐清已知的未知、blindspot 掃未知的未知、quiz 交付前測驗、pitch 提案、reflect 復盤晉升。",
+  "description": "「先找出未知、再動工」工作流（繁體中文）：kickoff 建骨架＋起草規格、scout 競品調查、interview 釐清已知的未知、blindspot 掃未知的未知、quiz 交付前測驗、pitch 懶人包、reflect 復盤晉升。",
   "version": "1.0.0",
   "author": {
     "name": "Miranda Wu"

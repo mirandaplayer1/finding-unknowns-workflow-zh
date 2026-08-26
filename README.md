@@ -38,7 +38,7 @@ cp -R en/skills/* ~/.claude/skills/        # English（擇一安裝，兩套 ski
 | 開工前 | `/interview` | 逐題問出「未知的已知」（理所當然的預設），答案回填規格 |
 | 開工前 | `/blindspot` | 掃「未知的未知」＋領域速成教學 |
 | 交付前 | `/quiz` | 變更報告＋理解測驗，全對才交付 |
-| 交付時 | `/pitch` | 提案／explainer，給別人看、要 buy-in |
+| 交付時 | `/pitch` | 懶人包／explainer，給別人看、要 buy-in |
 | 交付後 | `/reflect` | **開新對話**復盤，把教訓晉升成規則 |
 
 一輪工作長這樣（實線框＝說一句話就會觸發的 skill；虛線＝需要時才跑；紅字＝過不了就不往下走的門檻）：

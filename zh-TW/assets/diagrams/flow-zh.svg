@@ -70,7 +70,7 @@
 
   <rect x="670" y="542" width="210" height="64" rx="10" fill="#FFFFFF" stroke="#1F2A52" stroke-width="1.8" stroke-dasharray="6 5"/>
   <text x="775" y="569" text-anchor="middle" font-size="17" font-weight="700" fill="#1F2A52">/pitch</text>
-  <text x="775" y="590" text-anchor="middle" font-size="12" fill="#5B6478">提案要 buy-in，需要時</text>
+  <text x="775" y="590" text-anchor="middle" font-size="12" fill="#5B6478">懶人包要 buy-in，需要時</text>
 
   <line x1="880" y1="574" x2="938" y2="574" stroke="#5B6478" stroke-width="1.6" marker-end="url(#ar)"/>
 
