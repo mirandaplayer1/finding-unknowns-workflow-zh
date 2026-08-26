@@ -1,11 +1,11 @@
 ---
 name: interview
-description: Interviews the user to clarify ambiguities in the spec. Trigger when known unknowns remain after drafting the spec, when the spec has fuzzy areas, as a final confirmation before starting work, or when the user says "interview me", "ask me questions", or "help me clarify".
+description: Interviews the user to ask out "unknown knowns" (assumptions taken for granted and never written down) and spec ambiguities, filling the answers back into the spec. Trigger when unstated assumptions or fuzzy areas remain after drafting the spec, as a final confirmation before starting work, or when the user says "interview me", "ask me questions", or "help me clarify".
 ---
 
 # Interview
 
-Purpose: Turn "known unknowns" — the things the user knows they haven't thought through — into spec, one question and answer at a time. Division of labor with /blindspot: the blindspot pass finds problems the user isn't aware of; the interview handles ambiguity that has already surfaced.
+Purpose: Turn "unknown knowns" — the assumptions the user takes for granted and never writes down, but would recognize on sight (taste, conventions, expectations) — along with ambiguity that has already surfaced in the spec, into spec, one question and answer at a time. Division of labor: /blindspot finds problems the user isn't aware of; /scout researches "known unknowns" where the approach is still open; the interview asks out what's in the user's head but not yet on paper.
 
 ## Steps
 

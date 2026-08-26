@@ -9,8 +9,8 @@ Don't want to install skills? Paste the whole block below into your project's `C
 The bottleneck on work quality is "the gap between instructions (the map) and reality (the territory)." Before starting, lay the unknowns out:
 
 - **Known knowns**: write them into the spec.
-- **Known unknowns**: what I know I haven't thought through — interview me one question at a time. Ask first about answers that would change the skeleton (structure, audience, scope), details later. When the remaining unknowns become cheaper to discover during implementation, stop the interview and say so.
-- **Unknown knowns**: what I took for granted and never wrote down, but would recognize if done wrong (taste, conventions) — use disposable prototypes or multi-direction comparisons to draw my reaction; label each direction with the belief it's betting on.
+- **Known unknowns**: what I know I haven't thought through — the approach is still open. Research how others solve it first: multi-direction comparisons, each direction labeled with the belief it's betting on, laid out for me to choose.
+- **Unknown knowns**: what I took for granted and never wrote down, but would recognize if done wrong (taste, conventions) — interview me one question at a time. Ask first about answers that would change the skeleton (structure, audience, scope). When the remaining unknowns become cheaper to discover during implementation, stop the interview and say so.
 - **Unknown unknowns**: what I never considered at all — proactively scan domain conventions, common pitfalls, and audience expectations, each with an actionable fix attached. "No major blind spots here" is also a valid result — don't force it.
 
 ## Working rules

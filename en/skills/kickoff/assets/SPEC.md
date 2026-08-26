@@ -34,8 +34,8 @@
 | Quadrant | Content | Status |
 |---|---|---|
 | Known knowns: what I've already written into the spec | | — |
-| Known unknowns: what I know I haven't thought through | | Awaiting interview |
-| Unknown knowns: what I took for granted and never wrote down, but would recognize if done wrong (taste, style, conventions) | | Awaiting prototype confirmation |
+| Known unknowns: what I know I haven't thought through — approach still open | | Awaiting research (/scout) |
+| Unknown knowns: what I took for granted and never wrote down, but would recognize if done wrong (taste, style, conventions) | | Awaiting interview (/interview) |
 | Unknown unknowns: ask the agent to scan for blind spots and fill these in | | Awaiting scan |
 
 ## References
