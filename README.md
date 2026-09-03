@@ -56,6 +56,8 @@ cp -R en/skills/* ~/.claude/skills/        # English（擇一安裝，兩套 ski
 
 ![Skill 流程 × 檔案分層](zh-TW/assets/diagrams/layers-zh.svg)
 
+> 註：repo 裡 `skills/kickoff/assets/.claude/skills/` 的種子 skill 檔以 `SKILL.md.template` 存放，`/kickoff` 建骨架時會自動改回 `SKILL.md`——避免 plugin 打包驗證器把模板誤判成撞名的 skill。
+
 ## 症狀 → 該跑哪個
 
 - 只有一個模糊想法 → `/kickoff`

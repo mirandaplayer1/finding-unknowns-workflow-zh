@@ -53,6 +53,8 @@ One round of work looks like this (solid boxes = skills triggered by one sentenc
 
 ![Skill flow × file layers](assets/diagrams/layers-en.svg)
 
+> Note: the seed skill files under `skills/kickoff/assets/.claude/skills/` are stored as `SKILL.md.template`; `/kickoff` renames them back to `SKILL.md` when scaffolding a project — this keeps plugin packaging validators from flagging the templates as duplicate skills.
+
 ## Symptom → which one to run
 
 - All you have is a vague idea → `/kickoff`

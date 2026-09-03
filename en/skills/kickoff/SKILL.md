@@ -15,6 +15,7 @@ Purpose: A spec draft should not come from the user staring at a blank template 
    - **Never overwrite existing files**: ask about each name collision one by one, defaulting to skip; the user's work matters more than the template.
    - Existing `CLAUDE.md` → do not overwrite it or merge content; only append a single line `@WORKFLOW.md` at the end of the file (leave it untouched if the line is already there), and tell the user before appending.
    - **Copy faithfully**: do not "improve" the templates in assets along the way; templates evolve through each project's `/reflect` feedback, which the user then applies to this skill's assets by hand.
+   - Seed files under `.claude/skills/` are stored as `SKILL.md.template` (so plugin packaging validators don't mistake the templates for clashing real skills); after copying into the project, rename each back to `SKILL.md`.
    - After setup, list the file tree to verify (including the six project-level skills under `.claude/skills/` and `CLAUDE.md` containing `@WORKFLOW.md`), then continue straight into step 1 — this skill lives at the user level, so no new conversation is needed.
    - If the user only wants the skeleton and isn't ready to talk content yet, stop here, and note that they can say "I want to build X" later to continue.
 1. **Hear the starting point**: Ask the user to say in a few sentences what they want to build, why now, and whether they have a vague picture or reference in mind. Don't press for details — get the raw material first.
