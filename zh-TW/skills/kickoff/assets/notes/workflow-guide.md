@@ -12,20 +12,13 @@
 ├── WORKFLOW.md                ← 恆在層：行為規則（怎麼工作、怎麼記錄）
 ├── SPEC.md                    ← 恆在層：規格（唯一真相來源）
 ├── DECISIONS.md               ← 學習層：決策記錄（教學導向格式）
-├── notes/
-│   ├── workflow-guide.md      ← 本檔：模板使用指南
-│   ├── implementation-notes.md ← 工作層：本輪工作筆記與偏離記錄
-│   └── html-comment-layer.html ← 留言層片段：所有 HTML 產出直接內嵌
-└── .claude/skills/
-    ├── kickoff/SKILL.md       ← 開案：從粗略想法起草 SPEC.md 初稿
-    ├── interview/SKILL.md     ← 動工前：問出「未知的已知」與模糊處
-    ├── blindspot/SKILL.md     ← 動工前：掃描「未知的未知」＋領域速成教學
-    ├── quiz/SKILL.md          ← 交付前：變更報告＋測驗（自己懂了沒）
-    ├── pitch/SKILL.md         ← 交付時：懶人包／explainer（讓別人懂、要 buy-in）
-    └── reflect/SKILL.md       ← 完工後：反思與記憶晉升
+└── notes/
+    ├── workflow-guide.md      ← 本檔：模板使用指南
+    ├── implementation-notes.md ← 工作層：本輪工作筆記與偏離記錄
+    └── html-comment-layer.html ← 留言層片段：所有 HTML 產出直接內嵌
 ```
 
-另有兩個使用者層 skill 配合這套流程：`kickoff`（同名的使用者層版本，會在空資料夾先建骨架再起草規格）與 `scout`（競品調查——kickoff 選方向時「業界怎麼解」還不知道，就插跑它）。
+七個 skill（kickoff、scout、interview、blindspot、quiz、pitch、reflect）全部裝在使用者層 `~/.claude/skills/`，不隨專案複製——專案只帶檔案層。協作者拿到本專案資料夾後，先從 repo 安裝 skills：https://github.com/mirandaplayer1/finding-unknowns-workflow-zh
 
 ## 三個需求怎麼被滿足
 

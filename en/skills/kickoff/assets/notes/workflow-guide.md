@@ -12,20 +12,13 @@ project root/
 ├── WORKFLOW.md                ← always-loaded layer: behavior rules (how to work, how to record)
 ├── SPEC.md                    ← always-loaded layer: the spec (single source of truth)
 ├── DECISIONS.md               ← learning layer: decision log (teaching-oriented format)
-├── notes/
-│   ├── workflow-guide.md      ← this file: template usage guide
-│   ├── implementation-notes.md ← working layer: this round's notes and deviation log
-│   └── html-comment-layer.html ← comment-layer snippet: embed directly in every HTML output
-└── .claude/skills/
-    ├── kickoff/SKILL.md       ← kickoff: draft a first SPEC.md from a rough idea
-    ├── interview/SKILL.md     ← before work: interview to clarify the "known unknowns"
-    ├── blindspot/SKILL.md     ← before work: scan for "unknown unknowns" + crash-course teaching
-    ├── quiz/SKILL.md          ← before delivery: change report + quiz (do you actually understand it)
-    ├── pitch/SKILL.md         ← at delivery: pitch (explainer) — help others understand, get buy-in
-    └── reflect/SKILL.md       ← after work: retrospective and memory promotion
+└── notes/
+    ├── workflow-guide.md      ← this file: template usage guide
+    ├── implementation-notes.md ← working layer: this round's notes and deviation log
+    └── html-comment-layer.html ← comment-layer snippet: embed directly in every HTML output
 ```
 
-Two user-level skills complement this flow: `kickoff` (a same-named user-level version that builds the skeleton first in an empty folder, then drafts the spec) and `scout` (competitive research — when kickoff is picking a direction and "how does the industry solve this" is still unknown, run it in between).
+All seven skills (kickoff, scout, interview, blindspot, quiz, pitch, reflect) live at the user level (`~/.claude/skills/`) and are not copied into projects — a project carries only the file layer. Collaborators who receive this project folder should install the skills from the repo first: https://github.com/mirandaplayer1/finding-unknowns-workflow-zh
 
 ## How the three needs are met
 
